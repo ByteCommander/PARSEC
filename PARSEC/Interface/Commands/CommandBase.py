@@ -18,6 +18,9 @@ class CommandBaseClass(object):
 
 class CommandBaseClassWithEventSwitch(CommandBaseClass):
 
+    def __init__(self):
+        self.default_events = []
+
     def on_event(self, event, parsec_interface):
         if not issubclass(type(event), EventBase.EventBaseClass):
             raise TypeError("'on_event' requires as 'event' argument an instance of a subclass of "
@@ -26,8 +29,11 @@ class CommandBaseClassWithEventSwitch(CommandBaseClass):
             raise TypeError("'on_event' requires as 'parsec_interface' argument an instance of "
                             "'PARSEC.Interface.Commands.CommandAPI.ParsecInterface'!")
 
-        return (getattr(self, "on_{s}_event".format(event.event_type.lower()), self.on_default_event)
-                )(self, event, parsec_interface)
+        if event.event_type in self.default_events:
+            return self.on_default_event(event, parsec_interface)
+        else:
+            return (getattr(self, "on_{s}_event".format(event.event_type.lower()), self.on_default_event)
+                    )(self, event, parsec_interface)
 
     def on_default_event(self, event, parsec_interface):
         _not_implemented(self, "on_default_event")
