@@ -46,7 +46,7 @@ class CommandBaseClassWithEventSwitch(CommandBaseClass):
         if not issubclass(type(event), EventBase.EventBaseClass):
             raise TypeError("'on_event' requires as 'event' argument an instance of a subclass of "
                             "'PARSEC.Interface.Events.EventBase.EventBaseClass'!")
-        if not isinstance(type(parsec_interface), CommandAPI.ParsecInterface):
+        if not isinstance(parsec_interface, CommandAPI.ParsecInterface):
             raise TypeError("'on_event' requires as 'parsec_interface' argument an instance of "
                             "'PARSEC.Interface.Commands.CommandAPI.ParsecInterface'!")
 
