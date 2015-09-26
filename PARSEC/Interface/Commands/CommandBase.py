@@ -1,5 +1,5 @@
 __author__ = 'ByteCommander'
-from PARSEC.Interface import _default_implementation
+from PARSEC.Interface import _not_implemented
 from PARSEC.Interface.Events import EventBase
 from PARSEC.Interface.Commands import CommandAPI
 
@@ -7,7 +7,7 @@ from PARSEC.Interface.Commands import CommandAPI
 class CommandBaseClass(object):
 
     def on_event(self, event, parsec_interface):
-        _default_implementation(self, "on_event")
+        _not_implemented(self, "on_event")
 
     def on_enter(self, parsec_interface):
         pass
@@ -30,22 +30,22 @@ class CommandBaseClassWithEventSwitch(CommandBaseClass):
                 )(self, event, parsec_interface)
 
     def on_default_event(self, event, parsec_interface):
-        _default_implementation(self, "on_default_event")
+        _not_implemented(self, "on_default_event")
 
     def on_message_event(self, event, parsec_interface):
-        _default_implementation(self, "on_message_event")
+        _not_implemented(self, "on_message_event")
 
     def on_ping_event(self, event, parsec_interface):
-        _default_implementation(self, "on_ping_event")
+        _not_implemented(self, "on_ping_event")
 
     def on_reply_event(self, event, parsec_interface):
-        _default_implementation(self, "on_reply_event")
+        _not_implemented(self, "on_reply_event")
 
     def on_command_event(self, event, parsec_interface):
-        _default_implementation(self, "on_command_event")
+        _not_implemented(self, "on_command_event")
 
     def on_room_event(self, event, parsec_interface):
-        _default_implementation(self, "on_room_event")
+        _not_implemented(self, "on_room_event")
 
     def on_user_event(self, event, parsec_interface):
-        _default_implementation(self, "on_user_event")
+        _not_implemented(self, "on_user_event")
