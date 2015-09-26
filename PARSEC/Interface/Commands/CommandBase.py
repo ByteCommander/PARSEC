@@ -5,6 +5,15 @@ from ..Events import EventBase
 
 
 class CommandBaseClass(object):
+    """
+    All methods this class provides can and will be called by PARSEC if you load any subclass of it as command module.
+
+    You MUST override 'on_event(self, event, parsec_interface)' in your subclass, as this method raises a
+    'NotImplementedError' by default.
+
+    To add more functionality to your command you CAN override the other functions, which just are implemented
+    with a 'pass' statement by default.
+    """
 
     def on_event(self, event, parsec_interface):
         _not_implemented(self, "on_event")
@@ -17,6 +26,18 @@ class CommandBaseClass(object):
 
 
 class CommandBaseClassWithEventSwitch(CommandBaseClass):
+    """
+    This class overrides 'CommandBaseClass's 'on_event(...)' method to filter invalid argument types and split the
+    requests up to the methods 'on_message_event(...)', 'on_ping_event(...)', 'on_reply_event(...)',
+    'on_command_event(...)', 'on_room_event(...)', 'on_user_event(...)' and 'on_default_event(...)', which
+    handles everything else.
+
+    You should NOT override 'on_event(...)' any more, but ALL 'on_XXX_event(...)' methods, which raise a
+    'NotImplementedException' by default. If you don't want to implement all different specialised handlers,
+    you may add some event types (as string) to the 'default_events' attribute, which is a list.
+    All events contained there and all with unknown 'event_type' attribute will be handled by the
+    'on_default_event(...)' handler then.
+    """
 
     def __init__(self):
         self.default_events = []
