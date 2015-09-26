@@ -9,6 +9,12 @@ class CommandBaseClass(object):
     def on_event(self, event, parsec_interface):
         _default_implementation(self, "on_event")
 
+    def on_enter(self, parsec_interface):
+        pass
+
+    def on_leave(self, parsec_interface):
+        pass
+
 
 class CommandBaseClassWithEventSwitch(CommandBaseClass):
 
