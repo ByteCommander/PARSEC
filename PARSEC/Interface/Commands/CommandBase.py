@@ -1,7 +1,7 @@
 __author__ = 'ByteCommander'
-from PARSEC.Interface import _not_implemented
-from PARSEC.Interface.Events import EventBase
-from PARSEC.Interface.Commands import CommandAPI
+from .. import _not_implemented
+from . import CommandAPI
+from ..Events import EventBase
 
 
 class CommandBaseClass(object):
