@@ -1,7 +1,7 @@
 __author__ = 'ByteCommander'
 from .. import _not_implemented
 from . import CommandAPI
-from ..Events import EventBase
+from Interface.Status import EventBase
 
 
 class CommandBaseClass(object):
